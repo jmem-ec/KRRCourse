@@ -1,2 +1,2 @@
 # Knowledge Representation and Reasoning Course
-Material from the knowledge representation and reasoning module in the master's degree in data science
+Python code examples for the Knowledge Representation and Reasoning module in the master's degree of data science
