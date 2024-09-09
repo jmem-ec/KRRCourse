@@ -1,0 +1,8 @@
+id_curso,nombre_curso,tipo_curso,id_docente,inscrito,course_campus
+c101,Web Semantica,1,d1,e1,Campus Balzay
+c101,Web Semantica,1,d1,e2,Campus Balzay
+c101,Web Semantica,1,d1,e3,Campus Balzay
+c102,Web Semantica,1,d2,,Campus Central
+c103,Matematicas Discretas,1,d1,,Campus Balzay
+c104,Representacion del Conocimiento,2,d2,e4,Campus Central
+c104,Representacion del Conocimiento,2,d2,e5,Campus Central
