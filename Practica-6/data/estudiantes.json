@@ -1,0 +1,29 @@
+{
+  "estudiantes": [
+    {
+      "id_estudiante": "e1",
+      "nombre": "ana",
+      "matricula": "pregrado"
+    },
+    {
+      "id_estudiante": "e2",
+      "nombre": "maria",
+      "matricula": "pregrado"
+    },
+    {
+      "id_estudiante": "e3",
+      "nombre": "pedro",
+      "matricula": "pregrado"
+    },
+    {
+      "id_estudiante": "e4",
+      "nombre": "luis",
+      "matricula": "posgrado"
+    },
+    {
+      "id_estudiante": "e5",
+      "nombre": "juan",
+      "matricula": "posgrado"
+    }
+  ]
+}
