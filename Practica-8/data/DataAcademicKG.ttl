@@ -1,0 +1,55 @@
+@prefix : <http://example.org/university/ucuenca/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:c101 rdf:type :CursoPregrado ;
+      :tieneInscrito :e1 ,
+                     :e2 ,
+                     :e3 ,
+                     :e4 ;
+      :nombre "Web Semantica" .
+
+
+:c102 rdf:type :CursoPregrado ;
+      :nombre "Web Semantica" .
+
+:c103 rdf:type :CursoPregrado ;
+      :nombre "Matematicas Discretas" .
+
+:c104 rdf:type :CursoPosgrado ;
+      :tieneInscrito :e4 ,
+                     :e5 ;
+      :nombre "Representacion del Conocimiento" .
+
+
+:d1 rdf:type :Docente;
+    :dicta :c101 ;
+    :tieneDedicacion 40 ;
+    foaf:name "mauricio" .
+
+:d2 rdf:type :Docente ;
+    :dicta :c102 ,
+           :c104 ;
+    foaf:name "victor" .
+
+:d3 rdf:type :Docente;
+    :tieneDedicacion 59 ;
+    foaf:name "mabel" .
+
+:e1 rdf:type :EstudiantePregrado ;
+    foaf:name "ana" .
+
+:e2 rdf:type :EstudiantePregrado ;
+    foaf:name "maria" .
+
+:e3 rdf:type :EstudiantePregrado ;
+    foaf:name "pedro" .
+
+:e4 rdf:type :EstudiantePosgrado ;
+    foaf:name "luis" .
+
+:e5 rdf:type :EstudiantePosgrado ;
+    foaf:name "juan" .
