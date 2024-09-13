@@ -1,0 +1,62 @@
+@prefix : <http://example.org/university/ucuenca/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:c101 rdf:type :CursoPregrado ;
+      :tieneInscrito :e1 ,
+                     :e2 ,
+                     :e3 ,
+                     :e4 ;
+      :nombre "Web Semantica" ;
+      :codigo "c101-06-2024" ;
+      :sede "Campus Balzay" .
+
+:c102 rdf:type :CursoPregrado ;
+      :nombre "Web Semantica" ;
+      :codigo "B102-06-2024" ;
+      :sede "Campus Central" .
+
+:c103 rdf:type :CursoPregrado ;
+      :codigo "C103-01-24" ;
+      :nombre "Matematicas Discretas" .
+
+:c104 rdf:type :CursoPosgrado ;
+      :tieneInscrito :e4 ,
+                     ":e5" ;
+      :codigo "C104-01-2024" ;
+      :nombre "Representacion del Conocimiento" .
+
+:d1 rdf:type :DocenteTiempoCompleto;
+    :dicta :c101 ;
+    :tieneDedicacion 39;
+    foaf:name "mauricio" .
+
+:d2 rdf:type :DocenteTiempoCompleto ;
+    :dicta :c102 ,
+           :c104 ;
+    foaf:name "victor" .
+
+:d3 rdf:type :DocenteTiempoParcial;
+    :tieneDedicacion 59 ;
+    foaf:name "mabel" .
+
+:e1 rdf:type :EstudiantePregrado ;
+    foaf:name "ana" .
+
+:e2 rdf:type :EstudiantePregrado ;
+    foaf:name "maria" .
+
+:e3 rdf:type :EstudiantePregrado ;
+    foaf:name "pedro" ;
+    :edad "18" .
+
+:e4 rdf:type :EstudiantePosgrado ;
+    foaf:name "luis" ;
+    :edad 23 .
+
+:e5 rdf:type :EstudiantePosgrado ;
+    foaf:name "juan" ;
+    :tieneDiscapacidad true .
