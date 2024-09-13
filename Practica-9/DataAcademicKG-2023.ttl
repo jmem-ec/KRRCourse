@@ -1,1 +1,54 @@
+@prefix : <http://example.org/university/ucuenca/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+:c101 rdf:type :CursoPregrado ;
+      :tieneInscrito :e7 ,
+                     :e8 ,
+                     :e9 ;
+      :nombre "Web Semantica" .
+
+:c102 rdf:type :CursoPregrado ;
+      :tieneInscrito :e6 ;
+      :nombre "Introducción a la Programación" .
+
+:c103 rdf:type :CursoPregrado ;
+      :nombre "Matematicas Discretas" .
+
+:c104 rdf:type :CursoPosgrado ;
+      :tieneInscrito :e10 ,
+                     :e11 ;
+      :nombre "Representacion del Conocimiento" .
+
+:d1 rdf:type :Docente;
+    :dicta :c101 ;
+    :tieneDedicacion 40 ;
+    :nombre "mauricio" .
+
+:d2 rdf:type :Docente ;
+    :dicta :c102 ,
+           :c104 ;
+    :nombre "victor" .
+
+:d3 rdf:type :Docente;
+    :tieneDedicacion 59 ;
+    :nombre "mabel" .
+
+:e6 rdf:type :EstudiantePregrado ;
+    :nombre "carlos" .
+
+:e7 rdf:type :EstudiantePregrado ;
+    :nombre "valeria" .
+
+:e8 rdf:type :EstudiantePregrado ;
+    :nombre "roberto" .
+
+:e9 rdf:type :EstudiantePregrado ;
+    :nombre "paula" .
+
+:e10 rdf:type :EstudiantePosgrado ;
+    :nombre "andres" .
+
+:e11 rdf:type :EstudiantePosgrado ;
+    :nombre "sofia" .
