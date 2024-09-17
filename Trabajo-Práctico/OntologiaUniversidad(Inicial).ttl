@@ -1,0 +1,329 @@
+@prefix : <http://example.org/university/ucuenca/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/university/ucuenca/> .
+
+<http://example.org/university/ucuenca/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/university/ucuenca/dicta
+:dicta rdf:type owl:ObjectProperty ;
+       owl:inverseOf :esDictadoPor ;
+       rdfs:domain :Docente ;
+       rdfs:range :Curso .
+
+
+###  http://example.org/university/ucuenca/esDictadoPor
+:esDictadoPor rdf:type owl:ObjectProperty .
+
+
+###  http://example.org/university/ucuenca/tieneInscrito
+:tieneInscrito rdf:type owl:ObjectProperty ;
+               rdfs:domain :Curso ;
+               rdfs:range :Estudiante .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/university/ucuenca/descripcion
+:descripcion rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Curso ;
+             rdfs:range xsd:string .
+
+
+###  http://example.org/university/ucuenca/nombre
+:nombre rdf:type owl:DatatypeProperty ;
+        rdfs:domain [ rdf:type owl:Class ;
+                      owl:unionOf ( :Curso
+                                    <http://xmlns.com/foaf/0.1/Person>
+                                  )
+                    ] ;
+        rdfs:range xsd:string .
+
+
+###  http://example.org/university/ucuenca/tieneDedicacion
+:tieneDedicacion rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Docente ;
+                 rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/university/ucuenca/Curso
+:Curso rdf:type owl:Class .
+
+
+###  http://example.org/university/ucuenca/CursoOfertadoPosgrado
+:CursoOfertadoPosgrado rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( :CursoPosgrado
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :tieneInscrito ;
+                                                                    owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :EstudiantePosgrado
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf :CursoPosgrado .
+
+
+###  http://example.org/university/ucuenca/CursoOfertadoPregrado
+:CursoOfertadoPregrado rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( :CursoPregrado
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :tieneInscrito ;
+                                                                    owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :EstudiantePregrado
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf :CursoPregrado .
+
+
+###  http://example.org/university/ucuenca/CursoPosgrado
+:CursoPosgrado rdf:type owl:Class ;
+               rdfs:subClassOf :Curso .
+
+
+###  http://example.org/university/ucuenca/CursoPregrado
+:CursoPregrado rdf:type owl:Class ;
+               rdfs:subClassOf :Curso .
+
+
+###  http://example.org/university/ucuenca/Docente
+:Docente rdf:type owl:Class ;
+         rdfs:subClassOf :PersonalAcademico .
+
+
+###  http://example.org/university/ucuenca/DocenteMedioTiempo
+:DocenteMedioTiempo rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( :Docente
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :tieneDedicacion ;
+                                                                 owl:hasValue 20
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
+                    rdfs:subClassOf :DocentePorDedicacion .
+
+
+###  http://example.org/university/ucuenca/DocentePorCurso
+:DocentePorCurso rdf:type owl:Class ;
+                 rdfs:subClassOf :Docente .
+
+
+###  http://example.org/university/ucuenca/DocentePorDedicacion
+:DocentePorDedicacion rdf:type owl:Class ;
+                      rdfs:subClassOf :Docente .
+
+
+###  http://example.org/university/ucuenca/DocentePosgrado
+:DocentePosgrado rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Docente
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :dicta ;
+                                                              owl:someValuesFrom :CursoPosgrado
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf :DocentePorCurso .
+
+
+###  http://example.org/university/ucuenca/DocentePregrado
+:DocentePregrado rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Docente
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :dicta ;
+                                                              owl:someValuesFrom :CursoPregrado
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf :DocentePorCurso .
+
+
+###  http://example.org/university/ucuenca/DocenteTiempoCompleto
+:DocenteTiempoCompleto rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( :Docente
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :tieneDedicacion ;
+                                                                    owl:hasValue 40
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf :DocentePorDedicacion .
+
+
+###  http://example.org/university/ucuenca/DocenteTiempoParcial
+:DocenteTiempoParcial rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Docente
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :tieneDedicacion ;
+                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                        owl:onDatatype xsd:integer ;
+                                                                                        owl:withRestrictions ( [ xsd:minExclusive 0
+                                                                                                               ]
+                                                                                                               [ xsd:maxInclusive 19
+                                                                                                               ]
+                                                                                                             )
+                                                                                      ]
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :DocentePorDedicacion .
+
+
+###  http://example.org/university/ucuenca/Estudiante
+:Estudiante rdf:type owl:Class ;
+            rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  http://example.org/university/ucuenca/EstudiantePosgrado
+:EstudiantePosgrado rdf:type owl:Class ;
+                    rdfs:subClassOf :Estudiante .
+
+
+###  http://example.org/university/ucuenca/EstudiantePregrado
+:EstudiantePregrado rdf:type owl:Class ;
+                    rdfs:subClassOf :Estudiante .
+
+
+###  http://example.org/university/ucuenca/PersonalAcademico
+:PersonalAcademico rdf:type owl:Class ;
+                   rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> .
+
+
+###  http://example.org/university/ucuenca/TecnicoDocente
+:TecnicoDocente rdf:type owl:Class ;
+                rdfs:subClassOf :PersonalAcademico .
+
+
+###  http://example.org/university/ucuenca/TecnicoInvestigacion
+:TecnicoInvestigacion rdf:type owl:Class ;
+                      rdfs:subClassOf :PersonalAcademico .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+<http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/university/ucuenca/c101
+:c101 rdf:type owl:NamedIndividual ,
+               :CursoPregrado ;
+      :tieneInscrito :e1 ,
+                     :e2 ,
+                     :e3 ;
+      :nombre "Web Semantica" .
+
+
+###  http://example.org/university/ucuenca/c102
+:c102 rdf:type owl:NamedIndividual ,
+               :CursoPregrado ;
+      :nombre "Web Semantica" .
+
+
+###  http://example.org/university/ucuenca/c103
+:c103 rdf:type owl:NamedIndividual ,
+               :CursoPregrado ;
+      :nombre "Matematicas Discretas" .
+
+
+###  http://example.org/university/ucuenca/c104
+:c104 rdf:type owl:NamedIndividual ,
+               :CursoPosgrado ;
+      :tieneInscrito :e4 ,
+                     :e5 ;
+      :nombre "Representacion del Conocimiento" .
+
+
+###  http://example.org/university/ucuenca/d1
+:d1 rdf:type owl:NamedIndividual ;
+    :dicta :c101 ;
+    :nombre "Mauricio" ;
+    :tieneDedicacion 40 .
+
+
+###  http://example.org/university/ucuenca/d2
+:d2 rdf:type owl:NamedIndividual ;
+    :dicta :c102 ,
+           :c104 ;
+    :nombre "Victor" .
+
+
+###  http://example.org/university/ucuenca/d3
+:d3 rdf:type owl:NamedIndividual ;
+    :nombre "Mabel" ;
+    :tieneDedicacion 19 .
+
+
+###  http://example.org/university/ucuenca/e1
+:e1 rdf:type owl:NamedIndividual ,
+             :EstudiantePregrado ;
+    :nombre "Ana" .
+
+
+###  http://example.org/university/ucuenca/e2
+:e2 rdf:type owl:NamedIndividual ,
+             :EstudiantePregrado ;
+    :nombre "Maria" .
+
+
+###  http://example.org/university/ucuenca/e3
+:e3 rdf:type owl:NamedIndividual ,
+             :EstudiantePregrado ;
+    :nombre "Pedro" .
+
+
+###  http://example.org/university/ucuenca/e4
+:e4 rdf:type owl:NamedIndividual ,
+             :EstudiantePosgrado ;
+    :nombre "Juan" .
+
+
+###  http://example.org/university/ucuenca/e5
+:e5 rdf:type owl:NamedIndividual ,
+             :EstudiantePosgrado ;
+    :nombre "Luis" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :e1
+                        :e2
+                        :e3
+                        :e4
+                        :e5
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :e5
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
