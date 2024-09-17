@@ -1,0 +1,65 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix uc: <http://example.org/university/ucuenca/> .
+@prefix idlab-fn: <http://example.com/idlab/function/> .
+@prefix grel: <http://users.ugent.be/~bjdmeest/function/grel.ttl#> .
+
+uc:c101 rdf:type uc:CursoPregrado ;
+	uc:nombre "Web Semantica" ;
+	uc:tieneInscrito uc:e1, uc:e2, uc:e3 ;
+	uc:esDictadoPor uc:d1 ;
+	uc:seOfertaEn uc:s1 .
+
+uc:c102 rdf:type uc:CursoPregrado ;
+	uc:nombre "Web Semantica" ;
+	uc:esDictadoPor uc:d2 ;
+	uc:seOfertaEn uc:s2 .
+
+uc:c103 rdf:type uc:CursoPregrado ;
+	uc:nombre "Matematicas Discretas" ;
+	uc:esDictadoPor uc:d1 .
+
+uc:c104 rdf:type uc:CursoPosgrado ;
+	uc:nombre "Representacion del Conocimiento" ;
+	uc:tieneInscrito uc:e4, uc:e5 ;
+	uc:esDictadoPor uc:d2 ;
+	uc:seOfertaEn "uc:s3" .
+
+uc:d1 uc:nombre "mauricio" ;
+	uc:tieneDedicacion "40"^^xsd:integer .
+
+uc:d2 uc:nombre "victor" ;
+	uc:tieneDedicacion "20"^^xsd:integer .
+
+uc:d3 uc:nombre "mabel" ;
+	uc:tieneDedicacion "19"^^xsd:integer .
+
+uc:e1 uc:nombre "ana" ;
+	rdf:type uc:EstudiantePregrado .
+
+uc:e2 uc:nombre "maria" ;
+	rdf:type uc:EstudiantePregrado .
+
+uc:e3 uc:nombre "pedro" ;
+	rdf:type uc:EstudiantePregrado .
+
+uc:e4 uc:nombre "luis" ;
+	rdf:type uc:EstudiantePosgrado .
+
+uc:e5 uc:nombre "juan" ;
+	rdf:type uc:EstudiantePosgrado .
+
+uc:s1 rdf:type uc:Sede ;
+	uc:nombre "Campus Balzay"@es .
+
+uc:s2 rdf:type uc:Sede ;
+	uc:nombre "Campus Central"@es ;
+	uc:nombre "Central Campus"@en .
+
+uc:s3 rdf:type uc:Sede .
+
+uc:s4 rdf:type uc:Sede ;
+	uc:nombre "Campus Centro"@es ;
+	uc:nombre "Campus Centre"@fr .
