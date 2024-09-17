@@ -1,0 +1,8 @@
+id_curso,nombre_curso,tipo_curso,id_docente,inscrito,curso_campus
+c105,Base de Datos,1,d7,e6,s1
+c105,Base de Datos,1,d7,e7,s1
+c105,Base de Datos,1,d7,e8,s1
+c106,Programacion en la Web,1,d6,,s4
+c107,Calculo Diferencial,1,d5,,s2
+c108,Optimizacion,2,d4,e9,s5
+c108,Optimizacion,2,d4,e10,s5
